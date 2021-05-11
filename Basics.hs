@@ -402,19 +402,6 @@ getSafeTargets posHunter t = filter (\x -> (isTargetKilled posHunter x) == False
 areTargetsLeft :: Game -> Bool
 areTargetsLeft game = (target game) /= []
 
-{-
-    *** BONUS TODO ***
-
-    Comportamentul unui Target de a se deplasa în cerc, în jurul unui Position, având
-    o rază fixată.
-    Primul parametru, Position, reprezintă centrul cercului.
-    Parametrul Int reprezintă raza cercului.
-    Puteți testa utilizând terenul circle.txt din directorul terrains, în conjuncție
-    cu funcția interactive.
--}
-circle :: Position -> Int -> Behavior
-circle = undefined
-
 
 instance ProblemState Game Direction where
     {-
@@ -457,55 +444,3 @@ hEuclidean (x1, y1) (x2, y2) = fromIntegral $ ((x1 - x2) ^ pow) + ((y1 - y2) ^ p
   where
     pow = 2 :: Int
 
-{-
-    *** BONUS ***
-
-    Acesta reprezintă un artificiu necesar pentru testarea bonusului,
-    deoarece nu pot exista două instanțe diferite ale aceleiași clase
-    pentru același tip.
-
-    OBSERVAȚIE: Testarea bonusului pentru Seach este făcută separat.
--}
-
-newtype BonusGame = BonusGame Game
-    deriving (Eq, Ord, Show)
-
-{-
-    *** BONUS TODO ***
-
-    Folosind wrapper-ul peste tipul Game de mai sus instanțiați
-    ProblemState astfel încât să fie folosită noua euristică. 
--}
-instance ProblemState BonusGame Direction where
-    {-
-        *** BONUS TODO ***
-
-        Pentru a ne asigura că toțî succesorii unei stări sunt de tipul
-        BonusGame și folosesc noua euristică trebuie să aplicăm wrapper-ul
-        definit mai sus peste toți succesorii unei stări.
-
-        Hint: Puteți să folosiți funcția fmap pe perechi pentru acest lucru.
-        https://wiki.haskell.org/Functor
-    -}
-    successors = undefined
-
-    {-
-        *** BONUS TODO ***
-
-        Definiți funcția isGoal pentru BonusGame.
-
-        Hint: Folosiți funcția isGoal deja implementată pentru tipul Game.
-    -}
-    isGoal = undefined
-
-    {-
-        *** BONUS TODO ***
-
-        Definiți o funcție euristică care este capabilă să găsească un drum mai scurt
-        comparativ cu cel găsit de euristica implementată pentru Game.
-
-        ATENȚIE: Noua euristică NU trebuie să fie una trivială.
-
-        OBSERVAȚIE: Pentru testare se va folosi fișierul terrains/game-6.txt.
-    -}
-    h = undefined
